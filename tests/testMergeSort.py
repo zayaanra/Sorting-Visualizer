@@ -2,7 +2,7 @@ import unittest
 import sorters.mergeSort
 
 
-class TestBubbleSort(unittest.TestCase):
+class TestMergeSort(unittest.TestCase):
     # Test an unsorted list of numbers
     def test_sortAll(self):
         org_data = [-4, 21, 2, 1, 17, 3, 0, -12]
