@@ -1,4 +1,6 @@
+from random import randint
 from tkinter import *
+from gui.draw import draw
 
 # Initialize root
 root = Tk()
@@ -43,6 +45,15 @@ start.pack(side=LEFT, padx=3, pady=3)
 # Create a button to pause the visualization
 pause = Button(bar, text="Pause")
 pause.pack(side=LEFT, padx=3, pady=3)
+
+# Create a button to generate a random data set
+generate = Button(bar, text="Generate")
+generate.pack(side=LEFT, padx=3, pady=3)
+
+# Generate data set using the user input size
+random_data = [i for i in range(randint(1, 50))]
+c = draw(random_data, "blue")  # TODO - should only draw a new data set every time the user clicks "Generate"
+c.pack(side=BOTTOM)
 
 bar.pack(side=TOP, fill=X)
 
