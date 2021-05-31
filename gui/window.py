@@ -13,17 +13,13 @@ def draw():
     # Delete the current dataset
     canvas.delete("all")
     # Offsets used to determine the distance away from each bar
-    x1_offset = 50
-    x2_offset = 75
+    x1_offset = 10
+    x2_offset = 20
     # Loop through randomly generated dataset and draw each number out as a bar
     for i in data:
-        # TODO - Need to figure out to correctly place each rectangle next to each other, no padding should exist
-        # TODO - Height of each rectangle should change depending on the number it represents
-        # TODO - Make rectangles thinner to fit in more?
-        canvas.create_rectangle(x1_offset, 0, x2_offset, 500, fill=str(user_choice))
-        canvas.create_text((x1_offset+10, 75), text=str(i), font=("freemono", 11, "bold"))
-        x1_offset += 50
-        x2_offset += 50
+        canvas.create_rectangle(x1_offset, 0, x2_offset, (abs(i) + (i/100) * 3) + 50, fill=str(user_choice))
+        x1_offset += 10
+        x2_offset += 10
     canvas.pack(side=BOTTOM)
 
 
@@ -31,10 +27,10 @@ def draw():
 root = Tk()
 root.title("Sorting Visualizer")
 # Set maximum window size
-root.maxsize(1500, 1000)
+root.maxsize(1265, 800)
 
 # Set window size when application is first opened
-root.geometry("1500x1000")
+root.geometry("1265x800")
 
 root.config(bg="white")
 
