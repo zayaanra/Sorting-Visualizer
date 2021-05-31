@@ -17,6 +17,8 @@ Quick sort is a sorting algorithm that also utilizes the divide-and-conquer tech
 # GUI
 The GUI consists of a dropdown menu to select the desired algorithm, a color to represent the data set, an input size determined by the user as well as a START/PAUSE/GENERATE button that starts the sorting, pauses it, and generates a data set respectively.
 
+![]https://prnt.sc/13nf7ng
+
 ## Before the Sort
 
 
