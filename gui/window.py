@@ -1,4 +1,4 @@
-from random import randint
+import random
 from tkinter import *
 
 
@@ -8,7 +8,9 @@ from tkinter import *
 def draw():
     # Generate random data dependent on the user input size
     length = slider.get()
-    data = [i for i in range(1, length+1)]
+    data = [random.randint(-100, 100) for _ in range(1, length+1)]
+    user_choice = color.get()
+    # Delete the current dataset
     canvas.delete("all")
     # Offsets used to determine the distance away from each bar
     x1_offset = 50
@@ -18,7 +20,8 @@ def draw():
         # TODO - Need to figure out to correctly place each rectangle next to each other, no padding should exist
         # TODO - Height of each rectangle should change depending on the number it represents
         # TODO - Make rectangles thinner to fit in more?
-        canvas.create_rectangle(x1_offset, 0, x2_offset, 500, fill="blue")
+        canvas.create_rectangle(x1_offset, 0, x2_offset, 500, fill=str(user_choice))
+        canvas.create_text((x1_offset+10, 75), text=str(i), font=("freemono", 11, "bold"))
         x1_offset += 50
         x2_offset += 50
     canvas.pack(side=BOTTOM)
