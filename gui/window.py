@@ -25,7 +25,7 @@ def draw_new():
     x2_offset = 20
     # Loop through randomly generated dataset and draw each number out as a bar
     for i in random_data:
-        c = canvas.create_rectangle(x1_offset, 0, x2_offset, (abs(i) + (i / 100) * 3) + 50, fill=str(user_choice))
+        c = canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=str(user_choice))
         bars.append(c)
         x1_offset += 10
         x2_offset += 10
@@ -38,7 +38,7 @@ def draw_sorted(data):
     x1_offset = 10
     x2_offset = 20
     for i in data:
-        canvas.create_rectangle(x1_offset, 0, x2_offset, (abs(i) + (i / 100) * 3) + 50, fill=str(user_choice))
+        canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=str(user_choice))
         x1_offset += 10
         x2_offset += 10
     canvas.pack(side=BOTTOM)
@@ -54,7 +54,7 @@ def start_sort():
         sorted_data = mergeSort(random_data)
         draw_sorted(sorted_data)
     elif algo == "Quick Sort":
-        sorted_data = mergeSort(random_data)
+        sorted_data = quickSort(random_data, 0, len(random_data)-1)
         draw_sorted(sorted_data)
 
 
