@@ -2,6 +2,7 @@ import random
 from sorters.bubbleSort import bubbleSort
 from sorters.mergeSort import mergeSort
 from sorters.quickSort import quickSort
+from sorters.insertionSort import insertionSort
 from tkinter import *
 
 # Event-Handlers
@@ -54,8 +55,11 @@ def start_sort():
         sorted_data = mergeSort(random_data)
         draw_sorted(sorted_data)
     elif algo == "Quick Sort":
-        sorted_data = quickSort(random_data, 0, len(random_data)-1)
-        draw_sorted(sorted_data)
+        quickSort(random_data, 0, len(random_data) - 1)
+        draw_sorted(random_data)
+    elif algo == "Insertion Sort":
+        insertionSort(random_data)
+        draw_sorted(random_data)
 
 
 
@@ -78,7 +82,7 @@ color = StringVar()
 bar = Frame(root, bg='black')
 
 # Set variables and other data
-options = ["Bubble Sort", "Merge Sort", "Quick Sort"]
+options = ["Bubble Sort", "Merge Sort", "Quick Sort", "Insertion Sort"]
 selected.set(options[0])
 colors = ["Blue", "Red", "Yellow", "Green", "Orange", "Pink", "Purple"]
 color.set(colors[0])
