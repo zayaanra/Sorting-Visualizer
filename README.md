@@ -14,6 +14,9 @@ Merge sort is a sorting algorithm based on the divide-and-conquer technique. The
 ## Quick sort
 Quick sort is a sorting algorithm that also utilizes the divide-and-conquer technique. Instead of directly splitting up the array, quick sort uses a technique known as partitioning. This involves moving through the array and swapping elements based on a location in the array called the "pivot". After the swapping is completed, recursive calls are made to sort the data set. Worst-case runtime is O(n^2) when all elements or either smaller or larger than the pivot. It has an average runtime of O(nlogn). 
 
+## Insertion sort
+Insertion sort is a sorting algorithm that builds a sorted array one element at a time. It sorts by going through an array and swapping each element to it's correct position. At the end, each swap will have contributed to the sorted array. In worst case, insertion sort takes O(n^2) time but O(n) in best-case scenario.
+
 # GUI
 The GUI consists of a dropdown menu to select the desired algorithm, a color to represent the data set, an input size determined by the user as well as a START/PAUSE/GENERATE button that starts the sorting and generates a data set respectively. Each bar represents a number in the randomly generated dataset; the height denotes how big the value is. The "taller" the bar, the bigger the number it represents.
 
