@@ -1,11 +1,12 @@
 import random
 from sorters.bubbleSort import bubbleSort
+from sorters.mergeSort import mergeSort
+from sorters.quickSort import quickSort
 from tkinter import *
 
 # Event-Handlers
 bars = []
 random_data = []
-sorted_data = []
 
 
 # TODO - Possibly refactor things around to make code cleaner
@@ -15,7 +16,7 @@ def draw_new():
     bars.clear()
     random_data.clear()
     length = slider.get()
-    [random_data.append(random.randint(-125, 125)) for _ in range(1, length + 1)]
+    [random_data.append(random.randint(1, 125)) for _ in range(1, length + 1)]
     user_choice = color.get()
     # Delete the current dataset
     canvas.delete("all")
@@ -31,7 +32,6 @@ def draw_new():
     canvas.pack(side=BOTTOM)
 
 
-# TODO - Negative numbers break when being represented in the GUI - fix calculation?
 def draw_sorted(data):
     user_choice = color.get()
     canvas.delete("all")
@@ -46,9 +46,17 @@ def draw_sorted(data):
 
 def start_sort():
     # Selected Sorting Algorithm
-    # algo = selected.get()
-    bubbleSort(random_data)
-    draw_sorted(random_data)
+    algo = str(selected.get())
+    if algo == "Bubble Sort":
+        bubbleSort(random_data)
+        draw_sorted(random_data)
+    elif algo == "Merge Sort":
+        sorted_data = mergeSort(random_data)
+        draw_sorted(sorted_data)
+    elif algo == "Quick Sort":
+        sorted_data = mergeSort(random_data)
+        draw_sorted(sorted_data)
+
 
 
 # Initialize root
@@ -90,10 +98,6 @@ customizable.pack(side=LEFT, padx=3, pady=3)
 # Create a button to start the visualization
 start = Button(bar, text="Start", command=start_sort)
 start.pack(side=LEFT, padx=3, pady=3)
-
-# Create a button to pause the visualization
-pause = Button(bar, text="Pause")
-pause.pack(side=LEFT, padx=3, pady=3)
 
 # Create a canvas
 canvas = Canvas(width=2000, height=930, bg="grey")
