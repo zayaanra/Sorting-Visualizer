@@ -21,7 +21,8 @@ Insertion sort is a sorting algorithm that builds a sorted array one element at 
 The GUI consists of a dropdown menu to select the desired algorithm, a color to represent the data set, an input size determined by the user as well as a START/GENERATE button that starts the sorting and generates a data set respectively. Each bar represents a number in the randomly generated dataset; the height denotes how big the value is. The "taller" the bar, the bigger the number it represents.
 
 ## Before the Sort
-![](images/before_sort.png)
+![](images/before_sort2.png)
 
 
 ## After the Sort
+![](images/after_sort.png)
