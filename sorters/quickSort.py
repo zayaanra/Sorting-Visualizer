@@ -1,10 +1,3 @@
-# Swap elements in array
-def swap(data, idx1, idx2):
-    tmp = data[idx1]
-    data[idx1] = data[idx2]
-    data[idx2] = tmp
-
-
 # Sort in place
 def partition(data, low, high):
     pivot = data[high]
@@ -12,8 +5,8 @@ def partition(data, low, high):
     for i in range(low, high):
         if data[i] < pivot:
             mid += 1
-            swap(data, mid, i)
-    swap(data, mid + 1, high)
+            data[mid], data[i] = data[i], data[mid]
+    data[mid+1], data[high] = data[high], data[mid+1]
     return mid + 1
 
 
