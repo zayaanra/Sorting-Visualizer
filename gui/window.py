@@ -1,5 +1,5 @@
 import random
-import time
+from time import sleep
 from sorters.bubbleSort import bubbleSort
 from sorters.mergeSort import mergeSort
 from sorters.quickSort import quickSort
@@ -17,8 +17,9 @@ def generate():
     # Delete the current dataset
     bars.clear()
     random_data.clear()
+    # Retrieve user inputs
     length = slider.get()
-    user_choice = color.get()
+    user_choice = str(color.get())
     canvas.delete("all")
     # Generate random data dependent on the user input size
     [random_data.append(random.randint(1, 500)) for _ in range(1, length + 1)]
@@ -27,22 +28,31 @@ def generate():
     x2_offset = 20
     # Loop through randomly generated dataset and draw each number out as a bar
     for i in random_data:
-        c = canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=str(user_choice))
+        c = canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=user_choice)
         bars.append(c)
         x1_offset += 10
         x2_offset += 10
     canvas.pack(side=BOTTOM)
 
 
-def animate(data):
-    user_choice = color.get()
-    canvas.delete("all")
+def animate(data, i):
+    user_choice = str(color.get())
+    # canvas.delete("all")
     x1_offset = 10
     x2_offset = 20
-    for i in data:
-        canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=str(user_choice))
-        x1_offset += 10
-        x2_offset += 10
+    delay = 0
+    # for i in data:
+    # canvas.create_rectangle(x1_offset, 0, x2_offset, (i + (i / 100) * 3) + 50, fill=str(user_choice))
+    # x1_offset += 10
+    # x2_offset += 10
+    for i in bars:
+        # Change current bar to white
+        canvas.itemconfig(i, fill="white")
+        # Sleep for 0.2 ms
+        sleep(0.2)
+        root.update_idletasks()
+        # Change back to org. color
+        canvas.itemconfig(i, fill=user_choice)
     canvas.pack(side=BOTTOM)
 
 
@@ -51,16 +61,16 @@ def start_sort():
     algo = str(selected.get())
     if algo == "Bubble Sort":
         bubbleSort(random_data)
-        animate(random_data)
+        animate(random_data, 0)
     elif algo == "Merge Sort":
         sorted_data = mergeSort(random_data)
-        animate(sorted_data)
+        animate(sorted_data, 0)
     elif algo == "Quick Sort":
         quickSort(random_data, 0, len(random_data) - 1)
-        animate(random_data)
+        animate(random_data, 0)
     elif algo == "Insertion Sort":
         insertionSort(random_data)
-        animate(random_data)
+        animate(random_data, 0)
 
 
 # Initialize root
