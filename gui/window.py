@@ -1,6 +1,6 @@
 import random
 from time import sleep
-import sorters.bubbleSort
+from sorters.bubbleSort import bubbleSort
 from sorters.mergeSort import mergeSort
 from sorters.quickSort import quickSort
 from sorters.insertionSort import insertionSort
@@ -9,9 +9,6 @@ from tkinter import *
 # Event-Handlers
 num_to_bar = []
 random_data = []
-
-
-# TODO - Fix imports for sorters and animate()
 
 
 # Draws data set out every time the "Generate" button is pressed
@@ -53,13 +50,14 @@ def start_sort():
     # Selected Sorting Algorithm
     algo = str(selected.get())
     if algo == "Bubble Sort":
-        sorters.bubbleSort.bubbleSort(num_to_bar)
+        bubbleSort(num_to_bar, animate)
     elif algo == "Merge Sort":
-        sorted_data = mergeSort(random_data)
+        # TODO - need to fix
+        mergeSort(num_to_bar, animate)
     elif algo == "Quick Sort":
-        quickSort(random_data, 0, len(random_data) - 1)
+        quickSort(num_to_bar, 0, len(num_to_bar) - 1, animate)
     elif algo == "Insertion Sort":
-        insertionSort(random_data)
+        insertionSort(num_to_bar, animate)
 
 
 # Initialize root
