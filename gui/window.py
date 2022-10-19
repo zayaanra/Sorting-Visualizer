@@ -1,10 +1,78 @@
 import random
 from time import sleep
-from sorters.bubbleSort import bubbleSort
-from sorters.mergeSort import mergeSort
-from sorters.quickSort import quickSort
-from sorters.insertionSort import insertionSort
 from tkinter import *
+
+########################## SORTERS ##########################
+def bubbleSort(lst):
+    n = len(lst)
+    for i in range(0, n - 1):
+        for j in range(0, n - i - 1):
+            if lst[j] > lst[j + 1]:
+                lst[j + 1], lst[j] = lst[j], lst[j + 1]
+                animate(lst[j][1], lst[j + 1][1])
+
+def insertionSort(lst):
+    i = 1
+    while i < len(lst):
+        j = i
+        while j > 0 and lst[j - 1] > lst[j]:
+            lst[j], lst[j-1] = lst[j-1], lst[j]
+            animate(lst[j][1], lst[j - 1][1])
+            j -= 1
+        i += 1
+
+def merge(left, right):
+    # i = index for left half, j = index for right half
+    i, j = 0, 0
+    merged = []
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    # Merge the left and right
+    merged = merged + left[i:] + right[j:]
+    return merged
+
+
+def mergeSort(array):
+    # Base case
+    if len(array) <= 1:
+        return array
+    else:
+        # Recursive case
+        middle = len(array) // 2
+        (left, right) = (mergeSort(array[:middle]), mergeSort(array[middle:]))
+        return merge(left, right)
+
+# Sort in place
+def partition(data, low, high):
+    pivot = data[high]
+    mid = low - 1
+    for i in range(low, high):
+        if data[i] < pivot:
+            mid += 1
+            data[mid], data[i] = data[i], data[mid]
+            animate(data[i][1], data[mid][1])
+    data[mid+1], data[high] = data[high], data[mid+1]
+    animate(data[high][1], data[mid+1][1])
+    return mid + 1
+
+
+# Quick Sort Algorithm
+def quickSort(data, low, high):
+    if len(data) == 1:
+        return data
+    if low < high:
+        p = partition(data, low, high)
+        quickSort(data, low, p - 1)
+        quickSort(data, p + 1, high)
+
+#############################################################
+
+
 
 # Event-Handlers
 num_to_bar = []
@@ -50,14 +118,14 @@ def start_sort():
     # Selected Sorting Algorithm
     algo = str(selected.get())
     if algo == "Bubble Sort":
-        bubbleSort(num_to_bar, animate)
+        bubbleSort(num_to_bar)
     elif algo == "Merge Sort":
         # TODO - need to fix
-        mergeSort(num_to_bar, animate)
+        mergeSort(num_to_bar)
     elif algo == "Quick Sort":
-        quickSort(num_to_bar, 0, len(num_to_bar) - 1, animate)
+        quickSort(num_to_bar, 0, len(num_to_bar) - 1)
     elif algo == "Insertion Sort":
-        insertionSort(num_to_bar, animate)
+        insertionSort(num_to_bar)
 
 
 # Initialize root
